@@ -9,13 +9,14 @@
     <title>Специализированный магазин Найсер Дайсер Плюс (Nicer Dicer Plus)</title>
     <meta name="description" content="Овощерезка Nicer Dicer со скидкой и быстрой доставкой по СНГ">
     <meta name="keywords" content="Nicer Dicer, купить Nicer Dicer, овощерезка Nicer Dicer, Nicer Dicer отзывы">
-    <link rel="shortcut icon" href="https://qualityby.ru/nicer-dicer-a/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="stylesheet" href="nicer-dicer-2_files/style.css">
     <link rel="stylesheet" href="nicer-dicer-2_files/slick.css">
     <link rel="stylesheet" href="nicer-dicer-2_files/slick-theme.css">
     <link rel="stylesheet" href="nicer-dicer-2_files/font.css">
     <link rel="stylesheet" href="nicer-dicer-2_files/prompt.css">
     <script src="nicer-dicer-2_files/prompt.js"></script>
+
 </head>
 <body>
 
@@ -333,8 +334,13 @@
                 <li>1280грн</li>
                 <li>599грн</li>
             </ul>
-            <form action="call.php" method="post"
+            <form method="post" action="mail.php"
                   onsubmit="if(this.name.value==''){alert('Введите Ваше имя!');return false}if(this.phone.value==''){alert('Введите Ваш номер телефона!');return false}return true;">
+                <!-- Hidden Required Fields -->
+                <input type="hidden" name="project_name" value="Nicer Dicer">
+                <input type="hidden" name="admin_email" value="kupi2008@ukr.net">
+                <input type="hidden" name="form_subject" value="Ваш заказ">
+                <!-- END Hidden Required Fields -->
                 <input name="name" placeholder="Введите ваше имя" type="text">
                 <input name="phone" placeholder="Введите ваш телефон" type="tel">
                 <input value="Заказать со скидкой" class="button" type="submit">
@@ -354,106 +360,108 @@
 
 
 <link rel="stylesheet" type="text/css" href="nicer-dicer-2_files/roboto.css">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="nicer-dicer-2_files/jquery.js" type="text/javascript"></script>
 <script src="nicer-dicer-2_files/plugins.js" type="text/javascript"></script>
-
+<script src="script.js" type="text/javascript"></script>
 <script src="nicer-dicer-2_files/detect.js" type="text/javascript"></script>
 
 
-<script>
-    var vPlayer = null;
-    $(function () {
+<!--<script>-->
+    <!--var vPlayer = null;-->
+    <!--$(function () {-->
 
 
-        var product = 3004,
-            url = location.href,
-            length = 0,
-            keyVal = '',
-            arFio = [],
-            arPhone = [];
+        <!--var product = 3004,-->
+            <!--url = location.href,-->
+            <!--length = 0,-->
+            <!--keyVal = '',-->
+            <!--arFio = [],-->
+            <!--arPhone = [];-->
 
-        $('input[name=\'phone\']').bind('keyup change', function () {
-            var form = $(this).parents('form'),
-                name = form.find('input[name=\'name\']').val(),
-                phone;
+        <!--$('input[name=\'phone\']').bind('keyup change', function () {-->
+            <!--var form = $(this).parents('form'),-->
+                <!--name = form.find('input[name=\'name\']').val(),-->
+                <!--phone;-->
 
-            phone = $(this).val().replace(/\D+/g, '');
-            if (phone.length >= 8) {
-                getFormData();
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://79.171.117.10/send_stat_order/',
-                    data: {
-                        name: name,
-                        phone: phone,
-                        name_json: JSON.stringify(arFio),
-                        phone_json: JSON.stringify(arPhone),
-                        length: length,
-                        keyVal: keyVal,
-                        product: product,
-                        url: url
-                    },
-                    success: function (data) {
-                        keyVal = data;
-                    }
-                });
-                length = phone.length;
-            }
-        });
+            <!--phone = $(this).val().replace(/\D+/g, '');-->
+            <!--if (phone.length >= 8) {-->
+                <!--getFormData();-->
+                <!--$.ajax({-->
+                    <!--type: 'POST',-->
+                    <!--url: 'http://79.171.117.10/send_stat_order/',-->
+                    <!--data: {-->
+                        <!--name: name,-->
+                        <!--phone: phone,-->
+                        <!--name_json: JSON.stringify(arFio),-->
+                        <!--phone_json: JSON.stringify(arPhone),-->
+                        <!--length: length,-->
+                        <!--keyVal: keyVal,-->
+                        <!--product: product,-->
+                        <!--url: url-->
+                    <!--},-->
+                    <!--success: function (data) {-->
+                        <!--keyVal = data;-->
+                    <!--}-->
+                <!--});-->
+                <!--length = phone.length;-->
+            <!--}-->
+        <!--});-->
 
-        $('form').submit(function () {
-            if (keyVal.length > 0) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://79.171.117.10/send_stat_order/',
-                    data: {
-                        del: 1,
-                        keyVal: keyVal
-                    }
-                });
-            }
-        });
+        <!--$('form').submit(function () {-->
+            <!--if (keyVal.length > 0) {-->
+                <!--$.ajax({-->
+                    <!--type: 'POST',-->
+                    <!--url: 'http://79.171.117.10/send_stat_order/',-->
+                    <!--data: {-->
+                        <!--del: 1,-->
+                        <!--keyVal: keyVal-->
+                    <!--}-->
+                <!--});-->
+            <!--}-->
+        <!--});-->
 
-        function getFormData() {
-            arFio = [];
-            arPhone = [];
-            $('form').each(function () {
-                var phone = $(this).find('input[name=\'phone\']').val();
-                var fio = $(this).find('input[name=\'name\']').val();
-                phone = phone.replace(/\D+/g, '');
-                if (phone.length >= 8) {
-                    arPhone.push(phone.toString());
-                    if (typeof fio != 'undefined')
-                        arFio.push(fio.toString());
-                }
-            });
-        }
+        <!--function getFormData() {-->
+            <!--arFio = [];-->
+            <!--arPhone = [];-->
+            <!--$('form').each(function () {-->
+                <!--var phone = $(this).find('input[name=\'phone\']').val();-->
+                <!--var fio = $(this).find('input[name=\'name\']').val();-->
+                <!--phone = phone.replace(/\D+/g, '');-->
+                <!--if (phone.length >= 8) {-->
+                    <!--arPhone.push(phone.toString());-->
+                    <!--if (typeof fio != 'undefined')-->
+                        <!--arFio.push(fio.toString());-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
 
-    });
-</script>
-<script>
-    function pixel_func() {
-        $('body').append('<img style=\'display:none;\' src=\'//m1-shop.ru/pixel?u=1&track=ref%3D8%3B+s%3Dsv%3B+w%3D%3B+t%3D%3B+p%3D%3B+m%3D&landing_id=&prokl_id=&ip=185.17.127.43&lnk=0&product=3004&sale=phone&is_organic=1&tel=phone&fio=fio&host=qualityby.ru/nicer-dicer-a/&tren=0&useragent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NDsgcnY6NTkuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC81OS4w&user_device=0&showcase_from=0&ua_device=Firefox&ua_os=Windows&is_backorder=1\'>');
-    }
+    <!--});-->
+<!--</script>-->
+<!--<script>-->
+    <!--function pixel_func() {-->
+        <!--$('body').append('<img style=\'display:none;\' src=\'>');-->
+    <!--}-->
 
-    setTimeout(pixel_func, 120000);
-</script>
-<script type="text/javascript">
-    var ref = 8;
-    var get = 1;
-    var v1 = 1603;
-    var v2 = 0;
-    var v3 = 0;
-    var v4 = '185.17.127.43';
-    var v5 = 'Firefox';
-    var v6 = 'Windows';
-    var v7 = 'ru';
-    var v8 = '';
-    var v9 = '';
-    var v10 = '';
-    var v11 = '';
-    var v12 = '';
-</script>
+    <!--setTimeout(pixel_func, 120000);-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+    <!--var ref = 8;-->
+    <!--var get = 1;-->
+    <!--var v1 = 1603;-->
+    <!--var v2 = 0;-->
+    <!--var v3 = 0;-->
+    <!--var v4 = '185.17.127.43';-->
+    <!--var v5 = 'Firefox';-->
+    <!--var v6 = 'Windows';-->
+    <!--var v7 = 'ru';-->
+    <!--var v8 = '';-->
+    <!--var v9 = '';-->
+    <!--var v10 = '';-->
+    <!--var v11 = '';-->
+    <!--var v12 = '';-->
+<!--</script>-->
 <script src="nicer-dicer-2_files/vtracker.js"></script>
 <link href="nicer-dicer-2_files/popup-m1-style.css" rel="stylesheet" type="text/css">
 <script src="nicer-dicer-2_files/popup-m1.js" type="text/javascript"></script>
@@ -506,7 +514,8 @@
     width: 77px;
     background: url("//static.best-gooods.ru/img/youtube-play-icon.png") no-repeat
 }</style>
-<script src="nicer-dicer-2_files/slick.js"></script>
+
+<script src="node_modules/slick-carousel/slick/slick.js"></script>
 <script src="nicer-dicer-2_files/count.js"></script>
 <script src="nicer-dicer-2_files/main.js"></script>
 
