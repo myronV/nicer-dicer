@@ -1,0 +1,80 @@
+@charset 'UTF-8';
+/* Slider */
+/* Icons */
+/* Arrows */
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    display: block;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    opacity: 1;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+    z-index: 5;
+}
+.twist .slick-prev, .twist .slick-next {
+    bottom: -45px;
+    width: 40px;
+    height: 36px;
+}
+.photo .slick-prev, .photo .slick-next {
+    bottom: 37%;
+    width: 30px;
+    height: 50px;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    outline: none;
+    opacity: 0.7;
+}
+.twist .slick-prev{
+    left: 212px;
+    background: url(../img/arrows.png) no-repeat -60px 0;
+}
+.twist .slick-next{
+    right: 218px;
+    background: url(../img/arrows.png) no-repeat -100px 0;
+}
+.photo .slick-prev{
+    left: 110px;
+    background: url(../img/arrows.png) no-repeat 0 0;
+}
+.photo .slick-next{
+    right: 110px;
+    background: url(../img/arrows.png) no-repeat -30px 0;
+}
+@media screen and (max-width: 959px) {
+.photo .slick-prev, .photo .slick-next {
+    bottom: -24%;
+}
+.photo .slick-next {
+    right: 204px;
+}
+.photo .slick-prev {
+    left: 204px;
+}    
+}
+@media screen and (max-width: 639px) {
+ .photo .slick-prev, .photo .slick-next {
+    bottom: -50%;
+}
+.photo .slick-next {
+    right: 50px;
+}
+.photo .slick-prev {
+    left: 50px;
+}    
+}
